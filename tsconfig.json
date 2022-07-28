@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "noImplicitAny": true,
+      "lib": ["es6", "dom"],
+      "target": "es6",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "jsx": "react-jsx",
+      "types": [
+        "react",
+        "react-dom"
+      ]
+    },
+    "exclude": ["node_modules"]
+  }
