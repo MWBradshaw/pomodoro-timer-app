@@ -46,6 +46,15 @@ const TimerModal = styled(Modal)`
 
 `;
 
+const ModalText = styled.p`
+    font-family: Orbitron, sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    color: black;
+    text-align: center;
+    align-self: center;
+`
+
 const ModalButton = styled.button`
     
 `;
@@ -56,18 +65,47 @@ const ModalBody = styled(Modal.Body)`
     justify-content: center;
 `;
 
+const AdjustTimeBody = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+const AdjustTimeUpButton = styled.div`
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 5px solid black;
+`;
+
+const AdjustTimeDownButton = styled.div`
+
+`;
+
+
+const timeLeft = {
+    hours: '00',
+    minutes: '25',
+    seconds: '00'
+}
 
 const Timer = () => {
-    const [timer, setTimer] = useState('00:25:00');
-    const [timerValue, changeTimerValue] = useState('00:25:00');
+   const [time, setTime] = useState()
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     useEffect(() => {
         document.body.style.background = "#200910";
-        setTimer('00:25:00');
+        const interval = setInterval(() => {
+            updateTime();
+        }, 1000);
+        return() => clearInterval(interval);
     }, []);
+
+    function updateTime() {
+    }
 
     return(
         <>
@@ -76,7 +114,17 @@ const Timer = () => {
         </HeaderText>
 
         <TimerBody>
-            <TimerText>{timer}</TimerText>
+            <AdjustTimeBody>
+            <TimerText>{timeLeft.hours}</TimerText>
+            </AdjustTimeBody>
+            <TimerText>:</TimerText>
+            <AdjustTimeBody>
+            <TimerText>{timeLeft.minutes}</TimerText>
+            </AdjustTimeBody>
+            <TimerText>:</TimerText>
+            <AdjustTimeBody>
+            <TimerText>{timeLeft.seconds}</TimerText>
+            </AdjustTimeBody>
         </TimerBody>
 
         <TimerButtonBody>
@@ -95,7 +143,23 @@ const Timer = () => {
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
+            <AdjustTimeBody>
+                <AdjustTimeUpButton></AdjustTimeUpButton>    
+                <TimerText>{timeLeft.hours}</TimerText>
+                <AdjustTimeDownButton></AdjustTimeDownButton>
+                </AdjustTimeBody>
+                <TimerText>:</TimerText>
+                <AdjustTimeBody>
+                <AdjustTimeUpButton></AdjustTimeUpButton>    
+                <TimerText>{timeLeft.minutes}</TimerText>
+                <AdjustTimeDownButton></AdjustTimeDownButton>
+                </AdjustTimeBody>
+                <TimerText>:</TimerText>
+                <AdjustTimeBody>
+                <AdjustTimeUpButton></AdjustTimeUpButton>    
+                <TimerText>{timeLeft.seconds}</TimerText>
+                <AdjustTimeDownButton></AdjustTimeDownButton>
+                </AdjustTimeBody>
         </Modal.Body>
         <Modal.Footer>
           <ModalButton onClick={handleClose}>
