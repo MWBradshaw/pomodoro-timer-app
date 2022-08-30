@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'; 
+import Modal from 'react-bootstrap/Modal';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const HeaderText = styled.p`
     font-family: Share Tech, sans serif;
     font-weight: 400px;
-    font-size: 40px;
+    font-size: 60px;
     color: white;
     text-align: center;
     margin: 46 0px;
@@ -40,8 +42,27 @@ const TimerButton = styled.button`
     margin-bottom: 30px;
 `
 
+const TimerModal = styled(Modal)`
+
+`;
+
+const ModalButton = styled.button`
+    
+`;
+
+const ModalBody = styled(Modal.Body)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+
 const Timer = () => {
     const [timer, setTimer] = useState('00:25:00');
+    const [timerValue, changeTimerValue] = useState('00:25:00');
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         document.body.style.background = "#200910";
@@ -61,8 +82,28 @@ const Timer = () => {
         <TimerButtonBody>
             <TimerButton>Start Timer</TimerButton>
             <TimerButton>Reset Timer</TimerButton>
-            <TimerButton>Customize Timer</TimerButton>
+            <TimerButton onClick={() => handleShow()}>Customize Timer</TimerButton>
         </TimerButtonBody>
+
+        <TimerModal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+        </Modal.Body>
+        <Modal.Footer>
+          <ModalButton onClick={handleClose}>
+            Close
+          </ModalButton>
+          <ModalButton>Understood</ModalButton>
+        </Modal.Footer>
+      </TimerModal>
         </>
     );
 }
