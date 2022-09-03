@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components'; 
 import Modal from 'react-bootstrap/Modal';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const HeaderText = styled.p`
     font-family: Share Tech, sans serif;
@@ -69,17 +71,14 @@ const AdjustTimeBody = styled.div`
     display: flex;
     flex-direction: column;
 `
-const AdjustTimeUpButton = styled.div`
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-
-    border-bottom: 5px solid black;
+const AdjustTimeUpButton = styled.button`
+    border: 0px;
+    background-color: transparent;
 `;
 
-const AdjustTimeDownButton = styled.div`
-
+const AdjustTimeDownButton = styled.button`
+    border: 0px;
+    background-color: transparent;
 `;
 
 
@@ -114,17 +113,11 @@ const Timer = () => {
         </HeaderText>
 
         <TimerBody>
-            <AdjustTimeBody>
             <TimerText>{timeLeft.hours}</TimerText>
-            </AdjustTimeBody>
             <TimerText>:</TimerText>
-            <AdjustTimeBody>
             <TimerText>{timeLeft.minutes}</TimerText>
-            </AdjustTimeBody>
             <TimerText>:</TimerText>
-            <AdjustTimeBody>
             <TimerText>{timeLeft.seconds}</TimerText>
-            </AdjustTimeBody>
         </TimerBody>
 
         <TimerButtonBody>
@@ -142,30 +135,42 @@ const Timer = () => {
         <Modal.Header closeButton>
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <ModalBody>
             <AdjustTimeBody>
-                <AdjustTimeUpButton></AdjustTimeUpButton>    
-                <TimerText>{timeLeft.hours}</TimerText>
-                <AdjustTimeDownButton></AdjustTimeDownButton>
-                </AdjustTimeBody>
-                <TimerText>:</TimerText>
-                <AdjustTimeBody>
-                <AdjustTimeUpButton></AdjustTimeUpButton>    
-                <TimerText>{timeLeft.minutes}</TimerText>
-                <AdjustTimeDownButton></AdjustTimeDownButton>
-                </AdjustTimeBody>
-                <TimerText>:</TimerText>
-                <AdjustTimeBody>
-                <AdjustTimeUpButton></AdjustTimeUpButton>    
-                <TimerText>{timeLeft.seconds}</TimerText>
-                <AdjustTimeDownButton></AdjustTimeDownButton>
-                </AdjustTimeBody>
-        </Modal.Body>
+                <AdjustTimeUpButton>
+                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                </AdjustTimeUpButton>
+                <ModalText>{timeLeft.hours}</ModalText>
+                <AdjustTimeDownButton>
+                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                </AdjustTimeDownButton>
+            </AdjustTimeBody>
+            <ModalText>:</ModalText>
+            <AdjustTimeBody>
+                <AdjustTimeUpButton>
+                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                </AdjustTimeUpButton>
+                <ModalText>{timeLeft.minutes}</ModalText>
+                <AdjustTimeDownButton>
+                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                </AdjustTimeDownButton>
+            </AdjustTimeBody>
+            <ModalText>:</ModalText>
+            <AdjustTimeBody>
+                <AdjustTimeUpButton>
+                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                </AdjustTimeUpButton>
+                <ModalText>{timeLeft.seconds}</ModalText>
+                <AdjustTimeDownButton>
+                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                </AdjustTimeDownButton>
+            </AdjustTimeBody>
+        </ModalBody>
         <Modal.Footer>
           <ModalButton onClick={handleClose}>
             Close
           </ModalButton>
-          <ModalButton>Understood</ModalButton>
+          <ModalButton>Set Timer</ModalButton>
         </Modal.Footer>
       </TimerModal>
         </>
