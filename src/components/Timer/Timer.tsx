@@ -81,15 +81,20 @@ const AdjustTimeDownButton = styled.button`
     background-color: transparent;
 `;
 
+const ModalFooter = styled(Modal.Footer)`
+    justify-content: space-between;
+    padding: 5px 100px 5px 100px;
+`;
 
-const timeLeft = {
+const defaultTime = {
     hours: '00',
     minutes: '25',
     seconds: '00'
 }
 
 const Timer = () => {
-   const [time, setTime] = useState()
+
+   const [time, setTime] = useState();
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -106,6 +111,102 @@ const Timer = () => {
     function updateTime() {
     }
 
+
+    const incrementHour = () => {
+        if(defaultTime.hours !== "99")
+        {
+            let hourValue = parseInt(defaultTime.hours);
+            hourValue += 1;
+            defaultTime.hours = `0${hourValue}`;
+            return defaultTime.hours;
+        }
+    }
+
+    const decrementHour = () => {
+        if(defaultTime.hours !== "00")
+        {
+            let hourValue = parseInt(defaultTime.hours);
+            hourValue -= 1;
+            defaultTime.hours = hourValue.toString();
+            return defaultTime.hours;
+        }
+    }
+    
+    const incrementMinute = () => {
+        if(defaultTime.minutes !== "60")
+        {
+            let minuteValue = parseInt(defaultTime.minutes);
+            minuteValue += 1;
+
+            if(parseInt(defaultTime.minutes) < 10)
+            {
+                defaultTime.minutes = `0${minuteValue}`;
+                return defaultTime.minutes;
+            }
+
+            defaultTime.minutes = minuteValue.toString();
+            return defaultTime.minutes;
+        }
+    }
+
+    const decrementMinute = () => {
+        if(defaultTime.minutes !== "00")
+        {
+            let minuteValue = parseInt(defaultTime.minutes);
+            minuteValue -= 1;
+
+            if(parseInt(defaultTime.minutes) < 10)
+            {
+                defaultTime.minutes = `0${minuteValue}`;
+                return defaultTime.minutes;
+            }
+
+            defaultTime.minutes = minuteValue.toString();
+            return defaultTime.minutes;
+        }
+    }
+
+    const incrementSecond = () => {
+        if(defaultTime.seconds !== "60")
+        {
+            let secondValue = parseInt(defaultTime.seconds);
+            secondValue += 1;
+
+            if(parseInt(defaultTime.seconds) < 10)
+            {
+                defaultTime.seconds = `0${secondValue}`;
+                return defaultTime.seconds;
+            }
+
+            defaultTime.seconds = secondValue.toString();
+            return defaultTime.seconds;
+        }
+    }
+
+    const decrementSecond = () => {
+        if(defaultTime.seconds !== "00")
+        {
+            let secondValue = parseInt(defaultTime.seconds);
+            secondValue -= 1;
+
+            if(parseInt(defaultTime.seconds) < 10)
+            {
+                defaultTime.seconds = `0${secondValue}`;
+                return defaultTime.seconds;
+            }
+
+            defaultTime.seconds = secondValue.toString();
+            return defaultTime.seconds;
+        }
+    }
+
+    const resetTime = () => {
+
+
+    }
+
+
+
     return(
         <>
         <HeaderText>
@@ -113,11 +214,11 @@ const Timer = () => {
         </HeaderText>
 
         <TimerBody>
-            <TimerText>{timeLeft.hours}</TimerText>
+            <TimerText>{defaultTime.hours}</TimerText>
             <TimerText>:</TimerText>
-            <TimerText>{timeLeft.minutes}</TimerText>
+            <TimerText>{defaultTime.minutes}</TimerText>
             <TimerText>:</TimerText>
-            <TimerText>{timeLeft.seconds}</TimerText>
+            <TimerText>{defaultTime.seconds}</TimerText>
         </TimerBody>
 
         <TimerButtonBody>
@@ -137,41 +238,41 @@ const Timer = () => {
         </Modal.Header>
         <ModalBody>
             <AdjustTimeBody>
-                <AdjustTimeUpButton>
-                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                <AdjustTimeUpButton onClick={()=> incrementHour()}>
+                    <FontAwesomeIcon icon={solid('chevron-up')} size="lg"/>
                 </AdjustTimeUpButton>
-                <ModalText>{timeLeft.hours}</ModalText>
-                <AdjustTimeDownButton>
-                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                <ModalText>{defaultTime.hours}</ModalText>
+                <AdjustTimeDownButton onClick={()=> decrementHour()}>
+                    <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
             </AdjustTimeBody>
             <ModalText>:</ModalText>
             <AdjustTimeBody>
-                <AdjustTimeUpButton>
-                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                <AdjustTimeUpButton onClick={()=> incrementMinute()}>
+                    <FontAwesomeIcon icon={solid('chevron-up')} size="xl"/>
                 </AdjustTimeUpButton>
-                <ModalText>{timeLeft.minutes}</ModalText>
-                <AdjustTimeDownButton>
-                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                <ModalText>{defaultTime.minutes}</ModalText>
+                <AdjustTimeDownButton onClick={()=> decrementMinute()}>
+                    <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
             </AdjustTimeBody>
             <ModalText>:</ModalText>
             <AdjustTimeBody>
-                <AdjustTimeUpButton>
-                    <FontAwesomeIcon icon={solid('chevron-up')} />
+                <AdjustTimeUpButton onClick={()=> incrementSecond()}>
+                    <FontAwesomeIcon icon={solid('chevron-up')} size="xl"/>
                 </AdjustTimeUpButton>
-                <ModalText>{timeLeft.seconds}</ModalText>
-                <AdjustTimeDownButton>
-                    <FontAwesomeIcon icon={solid('chevron-down')} />
+                <ModalText>{defaultTime.seconds}</ModalText>
+                <AdjustTimeDownButton onClick={()=> decrementSecond()}>
+                    <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
             </AdjustTimeBody>
         </ModalBody>
-        <Modal.Footer>
+        <ModalFooter>
           <ModalButton onClick={handleClose}>
             Close
           </ModalButton>
           <ModalButton>Set Timer</ModalButton>
-        </Modal.Footer>
+        </ModalFooter>
       </TimerModal>
         </>
     );
