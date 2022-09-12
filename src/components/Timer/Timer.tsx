@@ -11,7 +11,7 @@ const HeaderText = styled.p`
     font-size: 60px;
     color: white;
     text-align: center;
-    margin: 46 0px;
+    margin:  0px;
 `
 
 const TimerText = styled.p`
@@ -21,6 +21,17 @@ const TimerText = styled.p`
     color: white;
     text-align: center;
     align-self: center;
+    margin: 0px;
+`
+
+const TimeText = styled.p`
+    font-family: Orbitron, sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    align-self: center;
+    margin: 0px 50px 0px 15px;
 `
 
 const TimerBody = styled.div`
@@ -94,7 +105,10 @@ const defaultTime = {
 
 const Timer = () => {
 
-   const [time, setTime] = useState();
+   const [hour, setHour] = useState("00");
+   const [minute, setMinute] = useState("25");
+   const [second, setSecond] = useState("00");
+
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -113,90 +127,63 @@ const Timer = () => {
 
 
     const incrementHour = () => {
-        if(defaultTime.hours !== "99")
+        let hourValue = parseInt(hour);
+        if(hour !== "99" && hourValue < 10)
         {
-            let hourValue = parseInt(defaultTime.hours);
             hourValue += 1;
-            defaultTime.hours = `0${hourValue}`;
-            return defaultTime.hours;
+            setHour(`${hourValue}`);
         }
+        else{
+            hourValue += 1;
+            setHour(`${hourValue}`); 
+        }
+        
     }
 
     const decrementHour = () => {
-        if(defaultTime.hours !== "00")
+        if(hour !== "00")
         {
-            let hourValue = parseInt(defaultTime.hours);
+            let hourValue = parseInt(hour);
             hourValue -= 1;
-            defaultTime.hours = hourValue.toString();
-            return defaultTime.hours;
+            setHour(hourValue.toString());
         }
     }
     
     const incrementMinute = () => {
-        if(defaultTime.minutes !== "60")
+        if(minute !== "60")
         {
-            let minuteValue = parseInt(defaultTime.minutes);
+            let minuteValue = parseInt(minute);
             minuteValue += 1;
-
-            if(parseInt(defaultTime.minutes) < 10)
-            {
-                defaultTime.minutes = `0${minuteValue}`;
-                return defaultTime.minutes;
-            }
-
-            defaultTime.minutes = minuteValue.toString();
-            return defaultTime.minutes;
+            setMinute(minuteValue.toString());
         }
     }
 
     const decrementMinute = () => {
-        if(defaultTime.minutes !== "00")
+        if(minute !== "00")
         {
-            let minuteValue = parseInt(defaultTime.minutes);
+            let minuteValue = parseInt(minute);
             minuteValue -= 1;
-
-            if(parseInt(defaultTime.minutes) < 10)
-            {
-                defaultTime.minutes = `0${minuteValue}`;
-                return defaultTime.minutes;
-            }
-
-            defaultTime.minutes = minuteValue.toString();
-            return defaultTime.minutes;
+            setMinute(minuteValue.toString());
         }
     }
 
     const incrementSecond = () => {
-        if(defaultTime.seconds !== "60")
+        if(second !== "60")
         {
-            let secondValue = parseInt(defaultTime.seconds);
+            let secondValue = parseInt(second);
             secondValue += 1;
-
-            if(parseInt(defaultTime.seconds) < 10)
-            {
-                defaultTime.seconds = `0${secondValue}`;
-                return defaultTime.seconds;
-            }
-
-            defaultTime.seconds = secondValue.toString();
-            return defaultTime.seconds;
+            setSecond(secondValue.toString());
+            return second;
         }
     }
 
     const decrementSecond = () => {
-        if(defaultTime.seconds !== "00")
+        if(second !== "00")
         {
-            let secondValue = parseInt(defaultTime.seconds);
+            let secondValue = parseInt(second);
             secondValue -= 1;
-
-            if(parseInt(defaultTime.seconds) < 10)
-            {
-                defaultTime.seconds = `0${secondValue}`;
-                return defaultTime.seconds;
-            }
-
-            defaultTime.seconds = secondValue.toString();
-            return defaultTime.seconds;
+            setSecond(secondValue.toString());
+            return second;
         }
     }
 
@@ -210,15 +197,16 @@ const Timer = () => {
     return(
         <>
         <HeaderText>
-            My Pomodoro
+           Leaflet
         </HeaderText>
 
         <TimerBody>
-            <TimerText>{defaultTime.hours}</TimerText>
-            <TimerText>:</TimerText>
-            <TimerText>{defaultTime.minutes}</TimerText>
-            <TimerText>:</TimerText>
-            <TimerText>{defaultTime.seconds}</TimerText>
+            <TimerText>{hour}</TimerText>
+            <TimeText>hours</TimeText>
+            <TimerText>{minute}</TimerText>
+            <TimeText>minutes</TimeText>
+            <TimerText>{second}</TimerText>
+            <TimeText>seconds</TimeText>
         </TimerBody>
 
         <TimerButtonBody>
@@ -241,7 +229,7 @@ const Timer = () => {
                 <AdjustTimeUpButton onClick={()=> incrementHour()}>
                     <FontAwesomeIcon icon={solid('chevron-up')} size="lg"/>
                 </AdjustTimeUpButton>
-                <ModalText>{defaultTime.hours}</ModalText>
+                <ModalText>{hour}</ModalText>
                 <AdjustTimeDownButton onClick={()=> decrementHour()}>
                     <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
@@ -251,7 +239,7 @@ const Timer = () => {
                 <AdjustTimeUpButton onClick={()=> incrementMinute()}>
                     <FontAwesomeIcon icon={solid('chevron-up')} size="xl"/>
                 </AdjustTimeUpButton>
-                <ModalText>{defaultTime.minutes}</ModalText>
+                <ModalText>{minute}</ModalText>
                 <AdjustTimeDownButton onClick={()=> decrementMinute()}>
                     <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
@@ -261,7 +249,7 @@ const Timer = () => {
                 <AdjustTimeUpButton onClick={()=> incrementSecond()}>
                     <FontAwesomeIcon icon={solid('chevron-up')} size="xl"/>
                 </AdjustTimeUpButton>
-                <ModalText>{defaultTime.seconds}</ModalText>
+                <ModalText>{second}</ModalText>
                 <AdjustTimeDownButton onClick={()=> decrementSecond()}>
                     <FontAwesomeIcon icon={solid('chevron-down')} size="xl"/>
                 </AdjustTimeDownButton>
