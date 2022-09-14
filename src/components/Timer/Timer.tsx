@@ -8,7 +8,7 @@ import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/
 const HeaderText = styled.p`
     font-family: Share Tech, sans serif;
     font-weight: 400px;
-    font-size: 60px;
+    font-size: 12vw;
     color: white;
     text-align: center;
     margin:  0px;
@@ -17,21 +17,11 @@ const HeaderText = styled.p`
 const TimerText = styled.p`
     font-family: Orbitron, sans-serif;
     font-weight: 900;
-    font-size: 60px;
+    font-size: 12vw;
     color: white;
     text-align: center;
     align-self: center;
-    margin: 0px;
-`
-
-const TimeText = styled.p`
-    font-family: Orbitron, sans-serif;
-    font-weight: 900;
-    font-size: 60px;
-    color: white;
-    text-align: center;
-    align-self: center;
-    margin: 0px 50px 0px 15px;
+    margin: 0 px;
 `
 
 const TimerBody = styled.div`
@@ -43,7 +33,8 @@ const TimerBody = styled.div`
 
 const TimerButtonBody = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
 `
 
 
@@ -62,7 +53,7 @@ const TimerModal = styled(Modal)`
 const ModalText = styled.p`
     font-family: Orbitron, sans-serif;
     font-weight: 900;
-    font-size: 60px;
+    font-size: 10vw;
     color: black;
     text-align: center;
     align-self: center;
@@ -201,12 +192,11 @@ const Timer = () => {
         </HeaderText>
 
         <TimerBody>
-            <TimerText>{hour}</TimerText>
-            <TimeText>hours</TimeText>
-            <TimerText>{minute}</TimerText>
-            <TimeText>minutes</TimeText>
-            <TimerText>{second}</TimerText>
-            <TimeText>seconds</TimeText>
+                <TimerText>{hour}</TimerText>
+                <TimerText>:</TimerText>
+                <TimerText>{minute}</TimerText>
+                <TimerText>:</TimerText>
+                <TimerText>{second}</TimerText>
         </TimerBody>
 
         <TimerButtonBody>
