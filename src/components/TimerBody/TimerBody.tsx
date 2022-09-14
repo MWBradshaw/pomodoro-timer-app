@@ -3,22 +3,13 @@ import styled from 'styled-components';
 import Modal from 'react-bootstrap/Modal';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-const HeaderText = styled.p`
-    font-family: Share Tech, sans serif;
-    font-weight: 400px;
-    font-size: 12vw;
-    color: white;
-    text-align: center;
-    margin:  0px;
-`
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const TimerText = styled.p`
     font-family: Orbitron, sans-serif;
     font-weight: 900;
     font-size: 12vw;
-    color: white;
+    color: black;
     text-align: center;
     align-self: center;
     margin: 0 px;
@@ -32,6 +23,7 @@ const TimerBody = styled.div`
 `
 
 const TimerButtonBody = styled.div`
+    justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,9 +33,13 @@ const TimerButtonBody = styled.div`
 const TimerButton = styled.button`
     height: 65px;
     width: 340px;
-    border: 0px;
+    border: 4px solid black;
     border-radius: 30px;
     margin-bottom: 30px;
+    background-color: transparent;
+    font-size: 25px;
+    font-family: Orbitron, sans-serif;
+    font-weight: 900;
 `
 
 const TimerModal = styled(Modal)`
@@ -106,11 +102,10 @@ const Timer = () => {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        document.body.style.background = "#200910";
-        const interval = setInterval(() => {
-            updateTime();
-        }, 1000);
-        return() => clearInterval(interval);
+        // const interval = setInterval(() => {
+        //     updateTime();
+        // }, 1000);
+        // return() => clearInterval(interval);
     }, []);
 
     function updateTime() {
@@ -187,10 +182,6 @@ const Timer = () => {
 
     return(
         <>
-        <HeaderText>
-           Leaflet
-        </HeaderText>
-
         <TimerBody>
                 <TimerText>{hour}</TimerText>
                 <TimerText>:</TimerText>
