@@ -26,13 +26,12 @@ const TimerButtonBody = styled.div`
     justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin: 30px;
 `
 
 
 const TimerButton = styled.button`
     height: 65px;
-    width: 340px;
     border: 4px solid black;
     border-radius: 30px;
     margin-bottom: 30px;

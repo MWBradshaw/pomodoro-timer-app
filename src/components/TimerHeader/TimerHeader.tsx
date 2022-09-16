@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const TimerHeaderBody = styled.div`
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 4px solid black;
     align-items: center;
     position: relative;
 `
